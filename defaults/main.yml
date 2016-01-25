@@ -40,3 +40,7 @@ php_fpm_config:
  - option: "error_log"
    section: "global"
    value: "/var/log/php5-fpm.log"
+
+php_fpm_geoip_install: False
+
+php_ppa: False

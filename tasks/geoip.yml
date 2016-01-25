@@ -1,0 +1,19 @@
+- name: install geoip packages
+  apt: >
+    name={{ item }}
+    state=present
+    update_cache=yes
+    cache_valid_time={{ apt_cache_valid_time }}
+  with_items:
+    - php5-geoip
+    - geoip-database
+
+- name: Create cronscript directory
+  file: path=/opt/cronscript/ state=directory
+
+- name: Install install geoip base updater
+  copy: src=updategeoip.sh dest=/opt/cronscript/updategeoip.sh owner=root group=root mode=0755
+
+- name: Create cron task for updategeoip
+  cron: name="geoipupdate" user=root special_time=weekly
+        job="/opt/cronscript/updategeoip.sh" cron_file=geoipupdate

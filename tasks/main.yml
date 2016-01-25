@@ -1,4 +1,8 @@
 ---
+- include: geoip.yml
+  when: php_fpm_geoip_install == True
+
+- include: ppa.yml
 
 - name: Add the OS specific varibles
   include_vars: "{{ ansible_os_family }}.yml"
@@ -67,7 +71,7 @@
    - restart php-fpm
   tags: [configuration,php,fpm]
 
-- name: Readd the include line to the ini file
+- name: Read the include line to the ini file
   ini_file: >
     dest={{ php_fpm_config_path }}
     section=global
