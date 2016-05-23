@@ -1,8 +1,9 @@
 ---
+- include: ppa.yml
+  when: php_ppa == True
+
 - include: geoip.yml
   when: php_fpm_geoip_install == True
-
-- include: ppa.yml
 
 - name: Add the OS specific varibles
   include_vars: "{{ ansible_os_family }}.yml"

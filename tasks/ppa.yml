@@ -1,7 +1,2 @@
-- name: istall php 5.5 from ppa
-  apt_repository: repo='ppa:ondrej/php5'
-  when: php_ppa == "5.5"
-
-- name: istall php 5.6 from ppa
-  apt_repository: repo='ppa:ondrej/php5-5.6'
-  when: php_ppa == "5.6"
+- name: Install php ppa
+  apt_repository: repo='ppa:ondrej/php'
